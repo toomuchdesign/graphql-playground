@@ -1,0 +1,52 @@
+{
+  "name": "graphql-playground",
+  "version": "0.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "files": [
+    "src",
+    "!__tests__"
+  ],
+  "scripts": {
+    "start": "npm run start:api:server",
+    "start:api:server": "json-server --watch ./server-api/db.js",
+    "test": "echo \"No test specified\"",
+    "preversion": "npm run prepublish",
+    "version": "git add package.json",
+    "postversion": "git push && git push --tags",
+    "prepublish": "npm t",
+    "format": "prettier --write \"**/*.{js,json,md}\""
+  },
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toomuchdesign/project-name.git"
+  },
+  "author": "Andrea Carraro <me@andreacarraro.it>",
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "^1.0.0",
+    "lint-staged": "^7.0.0",
+    "prettier": "^1.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,json}": [
+      "prettier --write",
+      "npm t -- .",
+      "git add"
+    ],
+    "**/*.{md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "faker": "^4.1.0",
+    "json-server": "^0.15.0"
+  }
+}
