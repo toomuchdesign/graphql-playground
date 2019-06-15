@@ -8,8 +8,9 @@
     "!__tests__"
   ],
   "scripts": {
-    "start": "npm run start:api:server",
-    "start:api:server": "json-server --watch ./server-api/db.js",
+    "start": "run-p start:server:*",
+    "start:server:api": "json-server --watch ./server-api/db.js",
+    "start:server:ql": "nodemon server-ql",
     "test": "echo \"No test specified\"",
     "preversion": "npm run prepublish",
     "version": "git add package.json",
@@ -46,7 +47,12 @@
     ]
   },
   "dependencies": {
+    "express": "^4.17.1",
+    "express-graphql": "^0.8.0",
     "faker": "^4.1.0",
-    "json-server": "^0.15.0"
+    "graphql": "^14.3.1",
+    "json-server": "^0.15.0",
+    "nodemon": "^1.19.1",
+    "npm-run-all": "^4.1.5"
   }
 }
