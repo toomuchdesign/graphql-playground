@@ -1,6 +1,6 @@
 const faker = require('faker');
 
-function randomNumberInRange(min, max){
+function randomNumberInRange(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
@@ -13,50 +13,50 @@ function generateDb() {
     const entries = [];
 
     for (let id = 0; id < userNumber; id++) {
-        entries.push({
-          id,
-          name: faker.name.findName(),
-          thumbnail: faker.internet.avatar(),
-        });
+      entries.push({
+        id: String(id),
+        name: faker.name.findName(),
+        thumbnail: faker.internet.avatar(),
+      });
     }
 
     return entries;
-  }
+  };
 
   const generatePosts = () => {
-      const entries = [];
+    const entries = [];
 
-      for (let id = 0; id < postNumber; id++) {
-          entries.push({
-            id,
-            title: faker.lorem.sentence(),
-            userId: randomNumberInRange(0, userNumber -1),
-          });
-      }
+    for (let id = 0; id < postNumber; id++) {
+      entries.push({
+        id: String(id),
+        title: faker.lorem.sentence(),
+        userId: randomNumberInRange(0, userNumber - 1),
+      });
+    }
 
-      return entries;
-  }
+    return entries;
+  };
 
   const generateComments = () => {
     const entries = [];
 
     for (let id = 0; id < commentNumber; id++) {
-        entries.push({
-          id,
-          body: faker.lorem.sentence(),
-          postId: randomNumberInRange(0, postNumber -1),
-          userId: randomNumberInRange(0, userNumber -1),
-        });
+      entries.push({
+        id: String(id),
+        body: faker.lorem.sentence(),
+        postId: randomNumberInRange(0, postNumber - 1),
+        userId: randomNumberInRange(0, userNumber - 1),
+      });
     }
 
     return entries;
-  }
+  };
 
   return {
     users: generateUsers(),
     posts: generatePosts(),
     comments: generateComments(),
-  }
+  };
 }
 
 module.exports = generateDb;
